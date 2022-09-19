@@ -28,12 +28,15 @@ const guardarEnLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
+
+
 //Función para mostrar el carrito
 const mostrarCarrito = () => {
     //Traemos el carrito del localStorage
     const carrito = traerDeLocalStorage('carrito');
     const piezas = traerDeLocalStorage('piezas');
-    
+    const precios = traerDeLocalStorage('precios');
+
     //Si no había nada nos dice que está vacío
     if (carrito.length == 0) {
         carritoHtml.innerHTML = `
@@ -45,15 +48,16 @@ const mostrarCarrito = () => {
     } else {
         //Si había productos guardados agrega al contenedor un 'ul' con el listado de todos los productos
         carrito.forEach((dest) => {
-            const idPieza = dest.idPieza;
-            //obtenerPieza(idPieza);
+            let idPieza = JSON.parse(dest.idPieza);
+            let pieza = piezas.find(p => p.id == idPieza);
+            let precio = precios.find(p => p.idPieza == idPieza);
             carritoHtml.innerHTML += `<div class="col mb-5">
             <div class="card h-100">
-                <img class="card-img-top" src="./img/${dest.img}" alt="..." />
+                <img class="card-img-top" src="../img/${pieza.nombre}.jpg" alt="..." />
                 <div class="card-body p-4">
                     <div class="text-center">
-                        <h5 class="fw-bolder">${dest.nombre}</h5>
-                        $${dest.precio}
+                        <h5 class="fw-bolder">${pieza.nombre}</h5>
+                        $${precio.precio}
                     </div>
                 </div>
             </div>
@@ -61,6 +65,14 @@ const mostrarCarrito = () => {
         });
 
     }
+}
+
+const obtenerPieza = (piezas, id) => {
+    //alert(id);
+
+    /* const pieza = piezas.find(p => p.idPieza === id);
+    alert(pieza);
+    return pieza; */
 }
 
 

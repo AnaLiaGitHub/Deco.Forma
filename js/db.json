@@ -1,0 +1,102 @@
+{
+    "piezas": [
+        {
+            "nombre": "Maceta",
+            "id": "P1"
+        },
+        {
+            "nombre": "Reloj",
+            "id": "P2"
+        },
+        {
+            "nombre": "Luminaria",
+            "id": "P3"
+        },
+        {
+            "nombre": "Vela",
+            "id": "P4"
+        },
+        {
+            "nombre": "Posa vasos",
+            "id": "P5"
+        },
+        {
+            "nombre": "Contenedor",
+            "id": "P6"
+        }
+    ],
+
+    "colores": [
+        {
+            "id": "C1",
+            "nombre": "Natural",
+            "img": "color1.jpg"
+        },
+        {
+            "id":"C2",    
+            "nombre": "Amarillo",
+            "img": "color2.jpg"
+        },
+        {
+            "id":"C3",
+            "nombre": "Verde",
+            "img": "color3.jpg"
+        },
+        {
+            "id":"C4",
+            "nombre": "Marmolado",
+            "img": "color4.jpg"
+        }
+    ],
+
+    "precios": [
+        {
+            "precio": 400,
+            "idPieza": "P1"
+        },
+        {
+            "precio": 600,
+            "idPieza": "P2"
+        },
+        {
+            "precio": 500,
+            "idPieza": "P3"
+        },
+        {
+            "precio": 250,
+            "idPieza": "P4"
+        },
+        {
+            "precio": 550,
+            "idPieza": "P5"
+        },
+        {
+            "precio": 150,
+            "idPieza": "P6"
+        }
+    ],
+
+    "finales": [
+        {
+            "idPieza": "P1",
+            "idColor": "C1",
+            "precio": "400",
+            "destacado": "S",
+            "img": "maceta_marmolada.jpg"
+        },
+        {
+            "idPieza": "P2",
+            "idColor": "C1",
+            "precio": "600",
+            "destacado": "N",
+            "img": "relojes.png"
+        },
+        {
+            "idPieza": "P3",
+            "idColor": "C1",
+            "precio": "500",
+            "destacado": "N",
+            "img": "luminarias.png"
+        }
+    ]
+}

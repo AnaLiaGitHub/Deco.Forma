@@ -16,9 +16,7 @@ let productosFinal = [];
 const url = './js/db.json';
 //Capturamos el contendor donde están todos los destacados
 const destacadosHtml = document.querySelector('.destacados');
-
-let cantCarrito = 0;
-
+const btnLimpiarCarrito = document.querySelector('.limpiar_carrito');
 
 /* 
 ==============================================
@@ -233,34 +231,11 @@ LÓGICA Y EVENTOS
 */
 
 let cantCarritoSpan = document.getElementById('cantCarrito');
+let cantCarrito = JSON.parse(localStorage.getItem('cantCarrito'));
 cantCarritoSpan.innerHTML = cantCarrito;
 let lb_producto_final = document.getElementById("lb_producto_final");
 let lb_precio = document.getElementById("precio");
 lb_producto_final.style.color = '#d63384'
-
-const btn = document.querySelector('#btn');
-btn.addEventListener("click", () => {
-    let selectedTipo;
-    let selectedColor;
-    /* for (const radioButton of radioButtonsTipo) {
-        if (radioButton.checked) {
-            selectedTipo = radioButton.value;
-            break;
-        }
-    }
-    let selectedColor;
-    for (const radioButtonC of radioButtonsColor) {
-        if (radioButtonC.checked) {
-            selectedColor = radioButtonC.value;
-            break;
-        }
-    } */
-
-    // show the output:
-    selectedTipo = localStorage.getItem("pieza_nom");
-    selectedColor = localStorage.getItem("color");
-    lb_producto_final.innerText = selectedTipo && selectedColor ? `Tu pieza es ${selectedTipo} de color ${selectedColor}` : `No has seleccionado pieza o color.`;
-});
 
 const btnAddCarrito = document.getElementById('addCarrito');
 
@@ -277,6 +252,15 @@ btnAddCarrito.addEventListener("click", () => {
     //Mostramos un modal de producto agregado
     //mostrarCartelAgregado();
     agregarAlCarrito();
+});
+
+btnLimpiarCarrito.addEventListener("click", () => {
+    let carrito = [];
+    guardarEnLocalStorage('carrito', carrito);
+    guardarEnLocalStorage('cantCarrito', 0);
+    cantCarrito = traerDeLocalStorage('cantCarrito');
+    cantCarritoSpan.innerHTML = cantCarrito;
+    carrito = traerDeLocalStorage('carrito');
 });
 
 const obtenerPrecio = (id) => {

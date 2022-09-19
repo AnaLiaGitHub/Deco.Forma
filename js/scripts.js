@@ -17,6 +17,9 @@ const url = './js/db.json';
 //Capturamos el contendor donde están todos los destacados
 const destacadosHtml = document.querySelector('.destacados');
 
+let cantCarrito = 0;
+
+
 /* 
 ==============================================
 FUNCIONES
@@ -230,7 +233,6 @@ LÓGICA Y EVENTOS
 */
 
 let cantCarritoSpan = document.getElementById('cantCarrito');
-let cantCarrito = traerDeLocalStorage('cantCarrito');
 cantCarritoSpan.innerHTML = cantCarrito;
 let lb_producto_final = document.getElementById("lb_producto_final");
 let lb_precio = document.getElementById("precio");

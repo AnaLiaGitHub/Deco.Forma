@@ -36,7 +36,7 @@ const mostrarCarrito = () => {
     const carrito = traerDeLocalStorage('carrito');
     const piezas = traerDeLocalStorage('piezas');
     const precios = traerDeLocalStorage('precios');
-
+    carritoHtml.innerHTML = ``;
     //Si no había nada nos dice que está vacío
     if (carrito.length == 0) {
         carritoHtml.innerHTML = `
@@ -51,7 +51,22 @@ const mostrarCarrito = () => {
             let idPieza = JSON.parse(dest.idPieza);
             let pieza = piezas.find(p => p.id == idPieza);
             let precio = precios.find(p => p.idPieza == idPieza);
-            carritoHtml.innerHTML += `<div class="col mb-5">
+            carritoHtml.innerHTML += `<div class="card mb-3" style="max-width: 1540px;">
+            <div id=${idPieza} class="row g-0">
+              <div class="col-md-6" style="max-width: 540px;">
+                <img src="../img/${pieza.nombre}.jpg" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body">
+                  <h5 class="card-title">${pieza.nombre}</h5>
+                  <p class="card-text">${pieza.nombre}</p>
+                  <p class="card-text"><small class="text-muted">$${precio.precio}</small></p>
+                  <button class="remove">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>`
+            /* carritoHtml.innerHTML += `<div class="col mb-5">
             <div class="card h-100">
                 <img class="card-img-top" src="../img/${pieza.nombre}.jpg" alt="..." />
                 <div class="card-body p-4">
@@ -61,7 +76,7 @@ const mostrarCarrito = () => {
                     </div>
                 </div>
             </div>
-        </div>`
+        </div>` */
         });
 
     }
@@ -82,5 +97,21 @@ LÓGICA Y EVENTOS
 ==============================================
 */
 
+carritoHtml.addEventListener('click', e => {
+    //Si donde hacen clic es sobre el botón de eliminar
+    if (e.target.classList.contains('remove')) {
+        //Guardamos el id del producto
+        const id = e.target.parentNode.parentNode.parentNode.id;
+        //Traemos el carrito de localStorage
+        let carrito = traerDeLocalStorage('carrito');
+        //Eliminamos el producto que coincida con el id
+        carrito = carrito.filter(p => p.idPieza != JSON.stringify(id));
+        //Guardamos el carrito en localStorage
+        guardarEnLocalStorage('carrito', carrito);
+        guardarEnLocalStorage('cantCarrito', carrito.length);
+        //Actualizamos la vista del carrito
+        mostrarCarrito();
+    }
+});
 
 mostrarCarrito();
